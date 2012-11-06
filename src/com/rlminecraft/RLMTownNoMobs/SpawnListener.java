@@ -42,9 +42,10 @@ public class SpawnListener implements Listener {
 		
 		// Entity check
 		EntityType entity = event.getEntityType();
-		if (entity != EntityType.BLAZE
+		if (	   entity != EntityType.BLAZE
 				&& entity != EntityType.CAVE_SPIDER
 				&& entity != EntityType.CREEPER
+				&& entity != EntityType.ENDER_DRAGON
 				&& entity != EntityType.ENDERMAN
 				&& entity != EntityType.GHAST
 				&& entity != EntityType.GIANT
@@ -54,7 +55,10 @@ public class SpawnListener implements Listener {
 				&& entity != EntityType.SKELETON
 				&& entity != EntityType.SLIME
 				&& entity != EntityType.SPIDER
-				&& entity != EntityType.ZOMBIE)
+				&& entity != EntityType.WITCH
+				&& entity != EntityType.WITHER
+				&& entity != EntityType.ZOMBIE
+			)
 			return;
 		
 		// Stop the spawn
