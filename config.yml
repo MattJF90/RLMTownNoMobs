@@ -26,5 +26,9 @@ bannedMobs:
   - ZOMBIE
 
 # Percentage of mobs to be converted to villagers
-# Default: 0.1 (10%)
-villagerRatio: 0.1
+# Default: 0.05 (5%)
+villagerRatio: 0.05
+
+# Whether villagers can use doors in towns
+# Default: false
+villagerDoors: false

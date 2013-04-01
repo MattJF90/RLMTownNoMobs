@@ -3,6 +3,7 @@ package com.rlminecraft.RLMTownNoMobs;
 import java.util.Random;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 //import org.bukkit.World;
 import org.bukkit.entity.EntityType;
@@ -10,8 +11,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
+import org.bukkit.event.entity.EntityInteractEvent;
 
 import com.palmergames.bukkit.towny.object.TownBlock;
+import com.palmergames.bukkit.towny.object.TownBlockType;
 import com.palmergames.bukkit.towny.object.TownyUniverse;
 
 public class SpawnListener implements Listener {
@@ -58,6 +61,34 @@ public class SpawnListener implements Listener {
 		EntityType villager = EntityType.VILLAGER;
 		if (world.spawnEntity(loc, villager) == null)
 			plugin.console.warning("Could not create villager at location " + loc.toString());
+	}
+	
+	@EventHandler
+	public void onDoorInteract (EntityInteractEvent event){
+		// Check if entity is villager
+		if (event.getEntityType() != EntityType.VILLAGER) return;
 		
+		// Check config for whether villagers are allowed to toggle doors
+		if (plugin.conf.getBoolean("villagerDoors",false)) return;
+		
+		// Check whether material interacted with is a door
+		if (   event.getBlock().getType() != Material.WOOD_DOOR
+			&& event.getBlock().getType() != Material.WOODEN_DOOR
+			&& event.getBlock().getType() != Material.IRON_DOOR
+			&& event.getBlock().getType() != Material.IRON_DOOR_BLOCK
+			&& event.getBlock().getType() != Material.TRAP_DOOR)
+			return;
+		
+		// Check if villager is in town
+		if (!plugin.towny.isEnabled()) return;
+		Location loc = event.getBlock().getLocation();
+		TownBlock plot = TownyUniverse.getTownBlock(loc);
+		if (   plot == null
+			|| plot.hasTown()
+			|| plot.getType() == TownBlockType.WILDS)
+			return;
+		
+		// Cancel interaction if all checks pass
+		event.setCancelled(true);
 	}
 }
