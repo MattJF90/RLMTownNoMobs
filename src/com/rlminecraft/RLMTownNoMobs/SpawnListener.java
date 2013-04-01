@@ -56,7 +56,7 @@ public class SpawnListener implements Listener {
 		
 		
 		// Possibly spawn villager in its place
-		if (rnd.nextDouble() < (1.0 - plugin.conf.getDouble("villagerRatio",0.1))) return;
+		if (rnd.nextDouble() < (1.0 - plugin.conf.getDouble("villagerRatio",0.05))) return;
 		World world = loc.getWorld();
 		EntityType villager = EntityType.VILLAGER;
 		if (world.spawnEntity(loc, villager) == null)
