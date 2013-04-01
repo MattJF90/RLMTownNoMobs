@@ -1,0 +1,30 @@
+#   +---------------+
+#   | RLMTownNoMobs |
+#   |               |
+#   | Configuration |
+#   +---------------+
+
+
+# List of banned mobs
+bannedMobs:
+  - BAT
+  - BLAZE
+  - CAVE_SPIDER
+  - CREEPER
+  - ENDER_DRAGON
+  - ENDERMAN
+  - GHAST
+  - GIANT
+  - MAGMA_CUBE
+  - PIG_ZOMBIE
+  - SILVERFISH
+  - SKELETON
+  - SLIME
+  - SPIDER
+  - WITCH
+  - WITHER
+  - ZOMBIE
+
+# Percentage of mobs to be converted to villagers
+# Default: 0.1 (10%)
+villagerRatio: 0.1
