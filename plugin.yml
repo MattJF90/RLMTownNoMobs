@@ -1,5 +1,0 @@
-name: RLMTownNoMobs
-main: com.rlminecraft.RLMTownNoMobs.RLMTownNoMobs
-version: 1.2
-author: MattFielding
-depend: [Towny]
